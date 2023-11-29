@@ -32,6 +32,16 @@ def setup():
     global re
     global rf
     global rg
+    global rh
+    global ri
+    global rj
+    global rk
+    global rl
+    global rm
+    global rn
+    global ro
+    global rp
+    global rq
     size(1920, 1080)
     background(200)
     #Grayscale (xxx), RGB(xxx, xxx, xxx), RGBA (xxx, xxx, xxx, xxx)
@@ -68,6 +78,18 @@ def setup():
     re = 960
     rf = 540
     rg = 3
+    rh = 960
+    ri = 540
+    rj = 3
+    rk = 960
+    rl = 540
+    rm = 3
+    rn = 540
+    ro = 960
+    rp = 540
+    rq = 960
+    rr = 0.1
+
     
 a = 0
 b = 0
@@ -105,14 +127,27 @@ rg = 0
 rh = 0
 rj = 0
 ri = 0
+rk = 0
+rl = 0
+rm = 0
+rn = 0
+ro = 0
+rp = 0
+rq = 0
+rr = 0
+rs = 0
+rt = 0
+ru = 0
+
+
 
 def draw():
 
     global b
     global c
     global d
-    fill(0, 170, 0)
-    stroke(0, 153, 0)
+    fill(0, 150, 0)
+    stroke(0, 130, 0)
     ellipse(b, 540, c, d)
     #left leaf
     b = b - 0.2
@@ -137,10 +172,10 @@ def draw():
     
     global n
     global o
-    stroke (0, 153, 0)
+    stroke (0, 120, 0)
     line(n, 540, o, 540)
-    line(n, 541, o ,541)
-    line(n, 539, o, 539)
+    line(n + 5, 541, o ,541)
+    line(n + 5, 539, o, 539)
     #main vein left leaf
     n = n - 0.3
     o = o - 0.06
@@ -148,8 +183,8 @@ def draw():
     global p
     global q
     line(p, 540, q, 540)
-    line(p, 541, q ,541)
-    line(p, 539, q, 539)
+    line(p - 5, 541, q ,541)
+    line(p - 5, 539, q, 539)
     #main vein right leaf
     p = p + 0.3
     q = q + 0.06
@@ -160,7 +195,7 @@ def draw():
     global rd
     rd = rd + 0.0004
     fill(200,0,0)
-    stroke(150,0,0)
+    stroke(170,0,0)
     circle(ra, rb, rc)
     #top left flower petal
     ra = ra - m
@@ -180,10 +215,19 @@ def draw():
     global ri
     global rj
     circle(rh, ri, rj)
-    #bottem left flower petal
-    rh = rh - m
-    ri = ri + m
+    #top right flower petal
+    rh = rh + m
+    ri = ri - m
     rj = rj + rd
+    
+    global rk
+    global rl
+    global rm
+    circle(rk, rl, rm)
+    #bottem right flower petal
+    rk = rk + m
+    rl = rl + m
+    rm = rm + rd
     
     global h
     global i
@@ -195,13 +239,12 @@ def draw():
     l = l + 0.0004
     m = m + 0.0003
     fill(200,0,0)
-    stroke(150,0,0)
+    stroke(170,0,0)
     ellipse(j, 540, h, i)
     #left petal of flower
     h = h - k
     i = i + l
     j = j - m
-    
     
     global r
     global s
@@ -225,10 +268,76 @@ def draw():
     global y
     global z
     ellipse(960, x, y, z)
-    #top petal flower
+    #bottem petal flower
     x = x + m
     y = y + l
     z = z + k
-
+    
+    global rn
+    global ro
+    global rp
+    global rq
+    stroke(150, 0, 0)
+    line(960, 540, 960, rn)
+    line(961, 540, 961, rn + 3)
+    line(959, 540, 959, rn + 3) 
+    #main line up
+    
+    line(960, 540, ro, 540)
+    line(960, 541, ro - 3, 541)
+    line(960, 539, ro - 3, 539) 
+    #main line right
+    
+    line(960, 540, 960, rp) 
+    line(961, 540, 961, rp - 3) 
+    line(959, 540, 959, rp - 3)     
+    #main line down
+    
+    line(960, 540, rq, 540) 
+    line(960, 541, rq + 3, 541)
+    line(960, 539, rq + 3, 539)
+    #main line left
+    rn = rn - l
+    ro = ro + l
+    rp = rp + l
+    rq = rq - l
+    
+    global rr
+    fill(180, 0, 0)
+    stroke(180, 0, 0)
+    circle(960, 540, rr)
+    rr = rr + m
+    #inner flower circle 1
+    
+    fill(170, 0, 0)
+    stroke(170, 0, 0)
+    circle(960, 540, rr - 5)
+    #inner flower circle 2
+    
+    fill(160, 0, 0)
+    stroke(160, 0, 0)
+    circle(960, 540, rr - 10)
+    #inner flower circle 3
+    
+    fill(150, 0, 0)
+    stroke(150, 0, 0)
+    circle(960, 540, rr - 15)
+    #inner flower circle 4
+    
+    fill(140, 0, 0)
+    stroke(140, 0, 0)
+    circle(960, 540, rr - 20)
+    #inner flower circle 5
+    
+    fill(130, 0, 0)
+    stroke(120, 0, 0)
+    circle(960, 540, rr - 25)
+    #inner flower circle 6
+    
+    fill(100, 0, 0)
+    stroke(100, 0, 0)
+    circle(960, 540, rr - 30)
+    #inner flower circle 7
+    
     
     
