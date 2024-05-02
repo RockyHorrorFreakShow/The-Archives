@@ -249,7 +249,7 @@ It will now print the score in the output window when you pick up the coins.
 
 Add a label node, write "You collected X amount of coins!" and name it ScoreLabel. Drag it under GameManager, go into the game_manager script and Click and Drag the new Label into the top of the script while holding cntrl. Then rewrite the script to this:
 
-$${\color{red}
+
 var score = 0
 
 @onready var score_label = $ScoreLabel
@@ -257,7 +257,6 @@ var score = 0
 func add_point():
     score += 1
     score_label.text = "You collected" + str(score) + " coins!"
-}$$
 
 It will now update in game
 
