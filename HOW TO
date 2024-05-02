@@ -1,0 +1,65 @@
+How to import Assets: Right click bottom left to create 3 folders, one for "Assets", one for "Scripts" and one for "Scenes"
+Drag and drop Assets into Assets folder
+
+Nodes:
+You put together nodes to create things. Nodes come in many forms, some display an image (sprites), some play a sound (Audio) or add Physics (RigidBody). Making a game in Godot is combining and extending nodes.
+
+Scenes:
+We use Scenes to bundle together nodes into reusable packages, a scene can be a character, a weapon, a menu. They can be as small as a single collectible coin, or an entire level. You can put scenes inside of other scenes, this is called nesting. You call the whole structure the scene tree and the node at the very beginning is called the root.
+
+Click 2D Scene in the top left box to create a root node. Rename Node2D to Game. Hit Cntr S go under Scenes and save here. You can hit play in top right, and allow current scene to be main scene.
+
+Create a new scene by hitting the plus sign by the tab above the Game view. Click the plus in the top left and search for CharacterBody2D and hit create. Hit plus in top right again and search for sprite, or animated sprite 2d if you want to add an animated sprite. 
+Add a png to the sprite or add a sprite sheet using the animator in the inspector. If doing animation, configure the grid to fit all the sprites, and click the grids in the order that you would like your animation. Hit add frames. Hit F to centre character on the screen, Scroll to zoom in, and click and drag with the middle mouse button to move around. If character is blurry go to project in the top left, project settings, look under rendering to find Textures and make the default texture filter nearest instead of linear. 
+
+Click plus in top left, search collision shape 2d, go to the inspector, define a new shape (circle shape for character) and adjust it to fit the sprite. Rename CharacterBody2d to player and save the scene. 
+
+Go into Game Scene (First tab above the game display) and drag in the player from the files box in bottom left.
+
+Click plus in top left, search camera 2d, if you press F it centres your screen to the camera. Adjust the zoom in the inspector to make it fit to your liking and then drag the camera to be on top of the player.
+
+Click on tab to go into player scene, with player node selected press the add script button (This looks like a scroll next to the + button top left). Here you can choose a template, for now use the basic movement template provided by godot. As for the path make sure it's put inside the scripts folder and name it player movement. If you click play now your player will immediately fall through the screen. 
+
+Click 2d at the middle top to change back, add a node by hitting plus, add a staticbody2d (Make sure tab is on game). While staticbody2d is selected click plus and add a collision shape, in the inspector click to create a new world body shape. This will extend infinitely to the left and right. 
+
+Select staticbody2d, change to move tool by pressing arrows next to cursor in top left of game view. Move the object down under the character. Go back to the select tool now by pressing the cursor. If you click play the player will land on the invisible collider and not fall through. 
+
+Modify the movement script:
+
+You can modify the speed and the Jump_Velocity to 130 and 300 respectively to slow the player down.
+
+World Building:
+To build the world delete the StaticBody2D, and add a tilemap node. Press plus and search for tile map. A tile set is a collection of tiles we can use to create our world and a tile map is the node we use to paint these tiles into our world. 
+
+In inspector under tileset click to create a new tileset and and click on it to configure. Set tile size to the correct thing for the asset you have. At the bottom of the screen you have the tileset and tilemap. Go into tileset and drag in tile set asset into square on the left. Automatically create tiles in the atlas? Yes. Make tile portion of screen bigger. Click bottom of the screen to go to tilemap and start painting, make sure your scene has the select tool (Cursor) and that the tile map has the paint tool enabled. Left click to place tiles, right click to remove. 
+
+Add physics layer so player doesn't fall through. Have Tilemap selected on left, go to inspector on right, click tileset and go to physics layers -> Add element.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
