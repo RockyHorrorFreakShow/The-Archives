@@ -33,7 +33,94 @@ To build the world delete the StaticBody2D, and add a tilemap node. Press plus a
 
 In inspector under tileset click to create a new tileset and and click on it to configure. Set tile size to the correct thing for the asset you have. At the bottom of the screen you have the tileset and tilemap. Go into tileset and drag in tile set asset into square on the left. Automatically create tiles in the atlas? Yes. Make tile portion of screen bigger. Click bottom of the screen to go to tilemap and start painting, make sure your scene has the select tool (Cursor) and that the tile map has the paint tool enabled. Left click to place tiles, right click to remove. 
 
-Add physics layer so player doesn't fall through. Have Tilemap selected on left, go to inspector on right, click tileset and go to physics layers -> Add element.
+Add physics layer so player doesn't fall through. Have Tilemap selected on left, go to inspector on right, click tileset and go to physics layers -> Add element. Now go to tileset in bottom and click paint and then paint properties. Select Physics layer 0 and click on the tiles you want to have a collider.  You can modify how much of the colliders cover the tile in the box on the left.
+
+Take tilemap in the order menu in top left and drag it to being right under game so you can always find it. Hit play and player will land on tiles and not fall through. 
+
+To get the camera to follow the player, take the camera2d in top left and drag it onto player also in top left making it a child of the player (Check if it is indeed centered on top of player). Go to inspector on right while camera is selected and enable position smoothing. When you click play camera should follow the player. 
+
+
+Platforms:
+
+Make a new scene (New tab with plus above game view), click the top left plus and search for animatableBody2D. While selected click plus and add sprite2d. From assets folder drag in the png you want into the inspector. Hit F and zoom in. In the inspector click region, enabled and then edit region to only show a part of the png. Select AnimatableBody2D again and hit plus add a collisionShape2D (Rectangle shape). Rename top node to platform and save the scene. Select CollisionShape2D and in the inspector click one way collision. 
+
+Go to game tab and drag in platform from the scenes folder bottom left to the game view. 
+
+Whatever is lower in the top left box is on top in the game view. For an easier fix, go to player scene (Tab at the top) and in the inspector go to ordering -> z index and write 5. By default all visible nodes have a z index of 0.
+
+Drag in second platform to the game view. This one will move. Select it in the tree on the left, click plus to add new node and search animation player. In the bottom, click animation -> new. Name it "move".
+Click the platform you're working on rn in the tree and in the inspector go to transform for the position. Click on the key and click create. 
+In the animator, drag blue line forward to 1 second and then drag platform to the right end point while holding shift to snap to axis, then click on key again. Click play to see the animation play. Click the looping arrows on top right on animator to loop animation, and click twice for bounce back loop. If it is too fast change number next to clock in top right (1-> 1.5) and drag last key frame to the end. Click A Arrow to the left of Edit in animator to play on load.
+
+Pickups:
+Click plus on tab to create new scene and then click plus in top left, search for area2D. You cannot collide with objects in area2D but it can detect collisions. While selected click plus again and search for sprite2D. 
+
+Optional: Instead of sprite2D select AnimatedSprite2D. In the inspector click new -> spriteframes. Click sprite frames and in the animator click the 3x3 grid button to select spritesheet. Set the horizontal and vertical grid and click the frames you want in the animation. Hit F and zoom in, click auto play. 
+
+In the tree select Area2D and click plus, search for CollisionShape2D (in inspector circleShape2D). Select area2D and rename it to coin and save scene. Go back to game tab and drag it into game view from bottom left folder.
+
+Click coin tab -> click Coin node -> click scroll to add script. Choose default template and for path put it under the scripts folder. 
+
+The ready function happens as soon as the game starts, try this line of code to test it;
+
+func _ready():
+    print("I'm a coin") 
+
+It will show up in the output window, click output at the very bottom of the screen to see it. 
+
+Remove the two functions, only leave extends Area2D.
+Click on coin node in the tree on the left (Area2D node) and click the node tab next to the inspector on the right. We want to use the body entered signal, double click this and hit connect. This creates new function in script with a green arrow in front of it.
+
+func _on_body_entered(body):
+    print("+1 coin!")
+
+Now when you play the message will display in output once player walks over it. Any bodies entering the area will activate this message however.
+
+To fix this we put the player on a seperate physics layer. Go to player tab and go to collision in the inspector. Change layer from 1 to 2 by clicking 2. Hit cntr S to save. The coin can stay on layer 1 for now. The mask right below the layer option should be 2 however as this decides what layers it will detect. 
+
+To remove coin from scene after colliding with it
+
+func _on_body_entered(body):
+    print("+1 coin!")
+    queue_free()
+
+
+Dying: 
+Select Camera under player (while in game tab) and in the inspector go under limit and select a position limit for the camera. You can click triangle ruler tool in top of game view to meassure how far a distance is.
+
+Killzone:
+Make new scene by clicking plus on the tabs. Then click plus in top left to make Area2D node and set collision mask to 2. Don't add a collision shape yet, as you can reuse it for different shapes of deadly things. Rename the node to killzone and save it as a new scene. Go back to game tab and drag it in from folder. Once here select the killzone node and click plus to add a collisionShape2D and select world boundary shape. Use move tool to position it below the level. 
+
+Go to killzone tab, select killzone node and click the scroll to add script. Template = empty, path = scripts folder. Select killzone node, click node tab next to inspector and double click bodyEntered2D
+
+func _on_body_entered(body):
+    print("You died!")
+
+Select killzone node and click plus search timer. In inspector select a wait time and one shot. Go to top of code and click and drag timer node from tree into script. Hold down cntrl while releasing.
+
+@onready var timer = $Timer
+
+func _on_body_entered(body):
+    print("You died!")
+    timer.start()
+
+Path works in a pretty simple manor, lets say you have your game, with the child player with the child camera. if you are making a script in game the path would be $Player/Camera.
+
+Now with the timer node selected go to node next to inspector and double click timeout and hit connect. 
+
+@onready var timer = $Timer
+
+func _on_body_entered(body):
+    print("You died!")
+    timer.start()
+
+func _on_timer_timeout():
+    get_tree().reload_current_scene()
+
+Add a new node, select base node (it's just called node), rename it coin and click and drag all of the coins from tree into it. Use these base nodes to organise your tree.
+
+
+
 
 
 
