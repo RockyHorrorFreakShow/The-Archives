@@ -7,7 +7,7 @@ Nodes:
 # You put together nodes to create things. Nodes come in many forms, some display an image (sprites), some play a sound (Audio) or add Physics (RigidBody). Making a game in Godot is combining and extending nodes.
 
 Scenes:
-We use Scenes to bundle together nodes into reusable packages, a scene can be a character, a weapon, a menu. They can be as small as a single collectible coin, or an entire level. You can put scenes inside of other scenes, this is called nesting. You call the whole structure the scene tree and the node at the very beginning is called the root.
+**We** use Scenes to bundle together nodes into reusable packages, a scene can be a character, a weapon, a menu. They can be as small as a single collectible coin, or an entire level. You can put scenes inside of other scenes, this is called nesting. You call the whole structure the scene tree and the node at the very beginning is called the root.
 
 Click 2D Scene in the top left box to create a root node. Rename Node2D to Game. Hit Cntr S go under Scenes and save here. You can hit play in top right, and allow current scene to be main scene.
 
