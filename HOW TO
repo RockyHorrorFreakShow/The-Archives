@@ -201,6 +201,10 @@ Click and drag Sprite2D (or animatedSprite2D) into the scripts above the functio
 var direction = Input.get_axis("move_left", "move_right")
 
 #Flip the Sprite
+if direction > 0 
+    Sprite_2D.flip_h = false
+elif direction < 0
+    Sprite_2D.flip_h = true
 
 #Apply movement
 if direction:
@@ -210,6 +214,52 @@ else:
 
 move_and_slide()
 
+
+Text:
+
+Select Game tab and click plus on tree, search Label, hit F and zoom. Add text in the field in the right, if text looks blurry you are zoomed in very far and you should add a font. Make sure to use the right size aswel to make it less blurry. Create a base node and place all labels in this node. 
+
+Score:
+
+Click the plus in the top left again to add a new base node (This one is not node2D unlike all other nodes used so far, including other base nodes), name it GameManager and place it at the top of the tree. Click the scroll to give it a script, template = empty, path = scripts (rename it in the folder to game_manager). 
+
+var score = 0
+
+func add_point():
+    score += 1
+    print(score)
+
+Right click GameManager go to the bottom and select Access as Unique Name.Go into coin and click and drag the GameManager node into it holding cntrl when you let go. This will now have no path and only it's name. The % sign indicates the unique name instead of a path.
+
+@onready var game_manager = %GameManager
+
+func _on_body_entered(body):
+    print("+1 coin!")
+    queue_free()
+
+Now replace the print line.
+
+@onready var game_manager = %GameManager
+
+func _on_body_entered(body):
+    game_manager.add_point()
+    queue_free()
+
+It will now print the score in the output window when you pick up the coins. 
+
+Add a label node, write "You collected X amount of coins!" and name it ScoreLabel. Drag it under GameManager, go into the game_manager script and Click and Drag the new Label into the top of the script while holding cntrl. Then rewrite the script to this:
+
+$${\color{red}
+var score = 0
+
+@onready var score_label = $ScoreLabel
+
+func add_point():
+    score += 1
+    score_label.text = "You collected" + str(score) + " coins!"
+}$$
+
+It will now update in game
 
 
 
